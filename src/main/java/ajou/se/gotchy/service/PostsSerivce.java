@@ -20,7 +20,7 @@ public class PostsSerivce {
     private final PostsRepository postsRepository;
     private final UsersRepository usersRepository;
 
-    private Posts findPosts(Long postsId) {
+    public Posts findPosts(Long postsId) {
         return postsRepository.findById(postsId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. POST_ID=" + postsId));
     }

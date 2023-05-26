@@ -1,5 +1,4 @@
 ﻿# gotchy-backend
-# Backend
 
 ## DB (Entity)
 

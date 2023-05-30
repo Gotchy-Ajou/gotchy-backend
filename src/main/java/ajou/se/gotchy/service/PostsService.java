@@ -16,7 +16,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class PostsSerivce {
+public class PostsService {
     private final PostsRepository postsRepository;
     private final UsersRepository usersRepository;
 

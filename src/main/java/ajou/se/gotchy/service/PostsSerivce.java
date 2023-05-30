@@ -2,7 +2,7 @@ package ajou.se.gotchy.service;
 
 import ajou.se.gotchy.domain.dto.PostsResponseDto;
 import ajou.se.gotchy.domain.dto.PostsSaveRequestDto;
-import ajou.se.gotchy.domain.dto.PostsUpdateReqeustDto;
+import ajou.se.gotchy.domain.dto.PostsUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Posts;
 import ajou.se.gotchy.domain.entity.Users;
 import ajou.se.gotchy.repository.PostsRepository;
@@ -55,7 +55,7 @@ public class PostsSerivce {
     }
 
     @Transactional
-    public PostsResponseDto update(Long postsId, PostsUpdateReqeustDto reqeustDto) {
+    public PostsResponseDto update(Long postsId, PostsUpdateRequestDto reqeustDto) {
         Posts posts = findPosts(postsId);
         posts.update(reqeustDto.getTitle(), reqeustDto.getContent());
 

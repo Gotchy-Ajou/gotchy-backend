@@ -12,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class FilterService {
+public class CateFilterService {
     private final GotchyRepository gotchyRepository;
 
     public List<CateFilterDto> findAll() {

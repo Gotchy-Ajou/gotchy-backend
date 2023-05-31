@@ -2,6 +2,7 @@ package ajou.se.gotchy.controller;
 
 import ajou.se.gotchy.domain.ResponseApiMessage;
 import ajou.se.gotchy.domain.dto.CateFilterDto;
+import ajou.se.gotchy.service.FilterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

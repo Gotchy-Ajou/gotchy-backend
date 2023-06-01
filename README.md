@@ -70,8 +70,8 @@
 - [ ]  가치 조회(날짜 선택) → Gotchy findAll [GET] , Gotchy findByDate [GET]
 - [ ]  가치 조회(필터링)
 - [x]  가치 상세 페이지 조회 → Gotchy findById [GET]
-- [x]  가치 신청 → Gotchy save [POST]
-- [x]  가치 모집 등록 → Gotchy save [POST]
+- [x]  가치 등록 (모집) → Gotchy save [POST]
+- [ ]  가치 신청 → 
 - [ ]  권한 부여 (공지사항 조회만 가능하게)
 
 ### 관리자
@@ -82,3 +82,4 @@
 - [x]  공지사항 수정 → Posts update [PUT]
 - [x]  공지사항 조회 → Posts findById [GET], Posts findAll [GET]
 - [x]  공지사항 삭제 → Posts delete [DELETE]
+- [x]  가치 등록 (관리자 등록) → Gotchy save [POST]

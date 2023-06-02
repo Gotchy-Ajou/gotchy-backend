@@ -1,15 +1,19 @@
 package ajou.se.gotchy.controller;
 
 import ajou.se.gotchy.domain.ResponseApiMessage;
+import ajou.se.gotchy.domain.dto.GotchyFilterDto;
 import ajou.se.gotchy.domain.dto.GotchyResponseDto;
 import ajou.se.gotchy.domain.dto.GotchySaveRequestDto;
 import ajou.se.gotchy.domain.dto.GotchyUpdateRequestDto;
 import ajou.se.gotchy.service.GotchyService;
+import ajou.se.gotchy.service.GotchyFilterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+
 
 @RequiredArgsConstructor
 @RestController
@@ -17,6 +21,7 @@ public class GotchyController extends BaseController {
     private static int SUCCESS_CODE = 200;
 
     private final GotchyService gotchyService;
+    private final GotchyFilterService gotchyFilterService;
 
     @PostMapping("api/v1/gotchy")
     public ResponseEntity<ResponseApiMessage> save(@RequestBody GotchySaveRequestDto requestDto) {
@@ -51,5 +56,11 @@ public class GotchyController extends BaseController {
         Long gotchy_id = gotchyService.delete(gotchyId);
 
         return sendResponseHttpByJson(SUCCESS_CODE, "Gotchy is deleted. GOTCHY_ID=" + gotchyId, gotchy_id);
+    }
+    @GetMapping("api/vi/gotchy/filter")
+    public ResponseEntity<ResponseApiMessage> findFilter() {
+        List<GotchyFilterDto> responseDtoList = gotchyFilterService.findFilter();
+
+        return sendResponseHttpByJson(SUCCESS_CODE, "Load the selected gotchy.", responseDtoList);
     }
 }

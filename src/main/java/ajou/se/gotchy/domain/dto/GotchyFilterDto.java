@@ -3,7 +3,7 @@ import ajou.se.gotchy.domain.entity.Gotchy;
 import lombok.Getter;
 
 @Getter
-public class CateFilterDto {
+public class GotchyFilterDto {
     String mode;
     String gotchyHobby;
     String location;
@@ -11,12 +11,17 @@ public class CateFilterDto {
     String level;
     String gender;
 
-    public GotchyResponseDto(Gotchy gotchy){
+    public GotchyFilterDto(Gotchy gotchy){
         this.mode = gotchy.getMode();
         this.gotchyHobby = gotchy.getGotchyHobby();
         this.location = gotchy.getLocation();
         this.headcount = gotchy.getHeadcount();
         this.level = gotchy.getLevel();
         this.gender = gotchy.getGender();
+    }
+
+    @Override
+    public String toString() {
+        return "GotchyFilterDto [mode=" + mode + ", gotchyHobby=" + gotchyHobby + ", location=" + location + "]";
     }
 }

@@ -24,6 +24,7 @@
 ### Gotchy
 
 - gotchyId → Long (PK)
+- gotchyName → String
 - mode (모집인지 아닌지/모집 진행,완료 여부) → String
 - gotchyHobby → String
 - date → String
@@ -72,7 +73,7 @@
 - [ ]  가치 조회(필터링)
 - [x]  가치 상세 페이지 조회 → Gotchy findById [GET]
 - [x]  가치 등록 (모집) → Gotchy save [POST]
-- [ ]  가치 신청 → 
+- [ ]  가치 신청 → Users apply
 - [ ]  권한 부여 (공지사항 조회만 가능하게)
 
 ### 관리자

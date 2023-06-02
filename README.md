@@ -68,8 +68,8 @@
 - [x]  취미별 레벨 등록 → HobbyController save [POST]
 - [ ]  취미별 레벨 조회 → Hobby findAll [GET]
 - [x]  취미별 레벨 수정 → HobbyController update [PUT]
-- [ ]  가치 조회(날짜 선택) → Gotchy findAll [GET] , Gotchy findByDate [GET]
-- [ ]  가치 조회(필터링)
+- [x]  가치 조회(날짜별 조회) → GotchyController findByDate [GET]
+- [ ]  가치 조회(필터링 적용 시)
 - [x]  가치 상세 페이지 조회 → GotchyController findById [GET]
 - [x]  가치 등록 (모집) → GotchyController save [POST]
 - [x]  가치 신청 → UsersController apply [POST]

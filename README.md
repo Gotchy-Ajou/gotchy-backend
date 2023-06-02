@@ -1,11 +1,12 @@
 ﻿# gotchy-backend
+
 ## DB (Entity)
 
 ---
 
 ### Users
 
-- usersId → Long
+- usersId → Long (PK)
 - password → String
 - name → String
 - nickname → String
@@ -22,8 +23,9 @@
 
 ### Gotchy
 
-- gotchyId → Long
-- mode (모집인지 아닌지) → String
+- gotchyId → Long (PK)
+- gotchyName → String
+- mode (모집인지 아닌지/모집 진행,완료 여부) → String
 - gotchyHobby → String
 - date → String
 - location → String
@@ -38,7 +40,7 @@
 
 ### Posts
 
-- postsId → Long
+- postsId → Long (PK)
 - title → String
 - content → String
 - author → String
@@ -47,7 +49,7 @@
 
 ### Hobby
 
-- hobbyId → Long
+- hobbyId → Long (PK)
 - hobbyName → String
 - hobbyLevel → String
 
@@ -57,23 +59,28 @@
 
 ### 사용자
 
-1. 사용자 회원가입 → Users save [POST]
-2. 사용자 정보 수정 → Users update [PUT] 
-3. 로그인/로그아웃 → 사용자 계정
-4. 사용자 프로필 조회 → Users findById [GET]
-5. 가치 신청 내역 조회 → Gotchy list로 전체 조회
-6. 공지사항 조회 → Posts findById [GET]
-7. 사용자 취미별 레벨 등록 → Hobby save [POST]
-8. 사용자 취미별 레벨 조회 → Hobby findByName [GET]
-9. 사용자 취미별 레벨 수정 → Hobby update [PUT]
-10. 가치 조회(날짜 선택) → Gotchy findByDate [GET]
-11. 가치 조회(필터링)
-12. 가치 상세 페이지 조회 → Gotchy findById [GET]
-13. 가치 신청 → Gotchy save [POST]
-14. 가치 모집 등록 → Gotchy save [POST]
-15. 채팅 기능
+- [x]  회원가입 → UsersController save [POST]
+- [x]  정보 수정 → UsersController update [PUT]
+- [ ]  로그인/로그아웃 → 사용자 계정
+- [x]  프로필 정보 조회(사용자 접근) → UsersController findById [GET]
+- [x]  가치 신청 내역 조회 → UsersController findMyApply [GET] 
+- [x]  공지사항 조회 → (전체)PostsController findAll [GET], (상세, 단건)PostsController findById [GET]
+- [x]  취미별 레벨 등록 → HobbyController save [POST]
+- [ ]  취미별 레벨 조회 → Hobby findAll [GET]
+- [x]  취미별 레벨 수정 → HobbyController update [PUT]
+- [ ]  가치 조회(날짜 선택) → Gotchy findAll [GET] , Gotchy findByDate [GET]
+- [ ]  가치 조회(필터링)
+- [x]  가치 상세 페이지 조회 → GotchyController findById [GET]
+- [x]  가치 등록 (모집) → GotchyController save [POST]
+- [x]  가치 신청 → UsersController apply [POST]
+- [ ]  권한 부여 (공지사항 조회만 가능하게)
 
 ### 관리자
 
-1. 로그인/로그아웃 → 관리자 계정 필요
-2. 공지사항 등록, 수정, 조회 삭제 → Posts CRUD
+- [ ]  로그인/로그아웃 → 관리자 계정 Users 엔티티에 필요 (미리 db에 등록해놔야함)
+- [ ]  권한 부여 (공지사항 등록, 수정, 조회, 삭제 가능)
+- [x]  공지사항 등록 → PostsController save [POST]
+- [x]  공지사항 수정 → PostsController update [PUT]
+- [x]  공지사항 조회 → (전체)PostsController findById [GET], (상세, 단건)PostsController findAll [GET]
+- [x]  공지사항 삭제 → PostsController delete [DELETE]
+- [x]  가치 등록 (관리자 등록) → GotchyController save [POST]

@@ -58,9 +58,12 @@ public class Users extends BaseTimeEntity {
     private Role role;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-    private List<Hobby> hobbyList = new ArrayList<>();
+    private List<Gotchy> gotchyList = new ArrayList<>();
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private List<Hobby> hobbyList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Posts> postsList = new ArrayList<>();
 
     @CreatedDate
@@ -98,5 +101,9 @@ public class Users extends BaseTimeEntity {
 
     public String getRoleKey(){
         return this.role.getKey();
+    }
+
+    public void addGotchy(Gotchy gotchy) {
+        this.gotchyList.add(gotchy);
     }
 }

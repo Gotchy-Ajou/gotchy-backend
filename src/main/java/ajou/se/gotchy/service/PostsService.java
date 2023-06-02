@@ -1,8 +1,8 @@
 package ajou.se.gotchy.service;
 
-import ajou.se.gotchy.domain.dto.PostsResponseDto;
-import ajou.se.gotchy.domain.dto.PostsSaveRequestDto;
-import ajou.se.gotchy.domain.dto.PostsUpdateRequestDto;
+import ajou.se.gotchy.domain.dto.Posts.PostsResponseDto;
+import ajou.se.gotchy.domain.dto.Posts.PostsSaveRequestDto;
+import ajou.se.gotchy.domain.dto.Posts.PostsUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Posts;
 import ajou.se.gotchy.domain.entity.Users;
 import ajou.se.gotchy.repository.PostsRepository;

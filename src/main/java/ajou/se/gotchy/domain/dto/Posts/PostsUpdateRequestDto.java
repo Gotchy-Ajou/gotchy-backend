@@ -1,4 +1,4 @@
-package ajou.se.gotchy.domain.dto;
+package ajou.se.gotchy.domain.dto.Posts;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

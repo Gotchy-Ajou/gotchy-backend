@@ -1,14 +1,15 @@
 package ajou.se.gotchy.service;
 
-import ajou.se.gotchy.domain.dto.GotchyResponseDto;
-import ajou.se.gotchy.domain.dto.GotchySaveRequestDto;
-import ajou.se.gotchy.domain.dto.GotchyUpdateRequestDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchyResponseDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchySaveRequestDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchyUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Gotchy;
 import ajou.se.gotchy.repository.GotchyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class GotchyService {
     @Transactional
     public GotchyResponseDto update(Long gotchyId, GotchyUpdateRequestDto requestDto) {
         Gotchy gotchy = findGotchy(gotchyId);
-        gotchy.update(requestDto.getMode(), requestDto.getGotchyDate(), requestDto.getLocation(), requestDto.getGotchyPhotoUrl(), requestDto.getPrice(), requestDto.getHeadcount(), requestDto.getLevel(), requestDto.getGender(), requestDto.getUseTime());
+        gotchy.update(requestDto.getGotchyName(), requestDto.getMode(), requestDto.getGotchyDate(), requestDto.getGotchyTime(), requestDto.getLocation(), requestDto.getGotchyPhotoUrl(), requestDto.getPrice(), requestDto.getHeadcount(), requestDto.getLevel(), requestDto.getGender(), requestDto.getUseTime());
 
         return new GotchyResponseDto(gotchy);
     }
@@ -59,5 +60,18 @@ public class GotchyService {
         gotchyRepository.delete(gotchy);
 
         return gotchyId;
+    }
+
+    public List<GotchyResponseDto> findbyDate(LocalDate gotchyDate) {
+        List<GotchyResponseDto> gotchyResponseDtoList = new ArrayList<>();
+        List<Gotchy> gotchyList = gotchyRepository.findAll();
+
+        for(Gotchy gotchy : gotchyList) {
+            if(gotchy.getGotchyDate() == gotchyDate){
+                gotchyResponseDtoList.add(new GotchyResponseDto(gotchy));
+            }
+        }
+
+        return gotchyResponseDtoList;
     }
 }

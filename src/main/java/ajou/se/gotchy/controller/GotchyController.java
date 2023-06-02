@@ -1,14 +1,15 @@
 package ajou.se.gotchy.controller;
 
 import ajou.se.gotchy.domain.ResponseApiMessage;
-import ajou.se.gotchy.domain.dto.GotchyResponseDto;
-import ajou.se.gotchy.domain.dto.GotchySaveRequestDto;
-import ajou.se.gotchy.domain.dto.GotchyUpdateRequestDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchyResponseDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchySaveRequestDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchyUpdateRequestDto;
 import ajou.se.gotchy.service.GotchyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -51,5 +52,12 @@ public class GotchyController extends BaseController {
         Long gotchy_id = gotchyService.delete(gotchyId);
 
         return sendResponseHttpByJson(SUCCESS_CODE, "Gotchy is deleted. GOTCHY_ID=" + gotchyId, gotchy_id);
+    }
+
+    @GetMapping("api/v1/gotchy")
+    public ResponseEntity<ResponseApiMessage> findByDate(@PathVariable LocalDate gotchyDate) {
+        List<GotchyResponseDto> responseDtoList = gotchyService.findbyDate(gotchyDate);
+
+        return sendResponseHttpByJson(SUCCESS_CODE, "All gotchys in Date=" + gotchyDate + "are loaded.", responseDtoList);
     }
 }

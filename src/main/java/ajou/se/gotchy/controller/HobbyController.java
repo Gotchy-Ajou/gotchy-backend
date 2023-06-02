@@ -1,9 +1,9 @@
 package ajou.se.gotchy.controller;
 
 import ajou.se.gotchy.domain.ResponseApiMessage;
-import ajou.se.gotchy.domain.dto.HobbyResponseDto;
-import ajou.se.gotchy.domain.dto.HobbySaveRequestDto;
-import ajou.se.gotchy.domain.dto.HobbyUpdateRequestDto;
+import ajou.se.gotchy.domain.dto.Hobby.HobbyResponseDto;
+import ajou.se.gotchy.domain.dto.Hobby.HobbySaveRequestDto;
+import ajou.se.gotchy.domain.dto.Hobby.HobbyUpdateRequestDto;
 import ajou.se.gotchy.service.HobbyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

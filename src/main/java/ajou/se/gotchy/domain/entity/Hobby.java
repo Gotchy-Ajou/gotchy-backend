@@ -21,7 +21,7 @@ public class Hobby {
     private String hobbyLevel;
 
     @ManyToOne
-    @JoinColumn(name = "usersId")
+    @JoinColumn(name = "users")
     private Users users;
 
     @Builder

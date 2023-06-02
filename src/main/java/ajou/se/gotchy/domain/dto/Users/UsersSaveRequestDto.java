@@ -1,4 +1,4 @@
-package ajou.se.gotchy.domain.dto;
+package ajou.se.gotchy.domain.dto.Users;
 
 import ajou.se.gotchy.domain.entity.Users;
 import lombok.Getter;

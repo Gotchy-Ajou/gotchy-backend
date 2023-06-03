@@ -62,12 +62,12 @@ public class GotchyService {
         return gotchyId;
     }
 
-    public List<GotchyResponseDto> findbyDate(LocalDate gotchyDate) {
+    public List<GotchyResponseDto> findByDate(String gotchyDate) {
         List<GotchyResponseDto> gotchyResponseDtoList = new ArrayList<>();
         List<Gotchy> gotchyList = gotchyRepository.findAll();
 
         for(Gotchy gotchy : gotchyList) {
-            if(gotchy.getGotchyDate() == gotchyDate){
+            if(gotchy.getGotchyDate().equals(gotchyDate)){
                 gotchyResponseDtoList.add(new GotchyResponseDto(gotchy));
             }
         }

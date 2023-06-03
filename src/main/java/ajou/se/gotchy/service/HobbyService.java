@@ -31,42 +31,32 @@ public class HobbyService {
     }
 
     @Transactional
-    public Long save(HobbySaveRequestDto requestDto){
+    public Long save(Long usersId, HobbySaveRequestDto requestDto){
+        Users users = findUsers(usersId);
         Hobby hobby = requestDto.toEntity();
+        hobby.addUsers(users);
 
         return hobbyRepository.save(hobby).getHobbyId();
     }
 
-    public HobbyResponseDto findById(Long hobbyId){
-        Hobby hobby = findHobby(hobbyId);
-
-        return new HobbyResponseDto(hobby);
-    }
-
-    public List<HobbyResponseDto> findAll() {
+    public List<HobbyResponseDto> findAll(Long usersId) {
         List<HobbyResponseDto> hobbyResponseDtoList = new ArrayList<>();
-        List<Hobby> hobbyList = hobbyRepository.findAll();
+        Users users = findUsers(usersId);
+        List<Hobby> hobbyList = users.getHobbyList();
 
         for(Hobby hobby : hobbyList){
-            hobbyResponseDtoList.add(new HobbyResponseDto(hobby));
+            hobbyResponseDtoList.add(new HobbyResponseDto(users, hobby));
         }
 
         return hobbyResponseDtoList;
     }
 
     @Transactional
-    public HobbyResponseDto update(Long hobbyId, HobbyUpdateRequestDto requestDto){
+    public HobbyResponseDto update(Long usersId, Long hobbyId, HobbyUpdateRequestDto requestDto){
+        Users users = findUsers(usersId);
         Hobby hobby = findHobby(hobbyId);
         hobby.update(requestDto.getHobbyLevel());
 
-        return new HobbyResponseDto(hobby);
-    }
-
-    @Transactional
-    public Long delete(Long hobbyId){
-        Hobby hobby = findHobby(hobbyId);
-        hobbyRepository.delete(hobby);
-
-        return hobbyId;
+        return new HobbyResponseDto(users, hobby);
     }
 }

@@ -24,7 +24,7 @@ public class Gotchy extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "users")
-    private Users users;  //
+    private Users users;
 
     @Column(nullable = false)
     private String gotchyName;
@@ -36,8 +36,7 @@ public class Gotchy extends BaseTimeEntity {
     private String gotchyHobby;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate gotchyDate;
+    private String gotchyDate;
 
     @Column(nullable = false)
     private String gotchyTime;
@@ -70,7 +69,7 @@ public class Gotchy extends BaseTimeEntity {
     LocalDateTime modifiedDate;
 
     @Builder
-    public Gotchy(String gotchyName, String mode, String gotchyHobby, LocalDate gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
+    public Gotchy(String gotchyName, String mode, String gotchyHobby, String gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
         this.gotchyName = gotchyName;
         this.mode = mode;
         this.gotchyHobby = gotchyHobby;
@@ -87,7 +86,7 @@ public class Gotchy extends BaseTimeEntity {
         this.modifiedDate = LocalDateTime.now();
     }
 
-    public Gotchy update(String gotchyName, String mode, LocalDate gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
+    public Gotchy update(String gotchyName, String mode, String gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
         this.gotchyName = gotchyName;
         this.mode = mode;
         this.gotchyDate = gotchyDate;

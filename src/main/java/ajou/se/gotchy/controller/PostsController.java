@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class PostsController extends BaseController{
-    private static int SUCCES_CODE = 200;
+    private final static int SUCCESS_CODE = 200;
 
     private final PostsService postsService;
 
@@ -22,34 +22,34 @@ public class PostsController extends BaseController{
     public ResponseEntity<ResponseApiMessage> save(@RequestBody PostsSaveRequestDto requestDto) {
         Long posts_id = postsService.save(requestDto);
 
-        return sendResponseHttpByJson(SUCCES_CODE, "Post is saved.", posts_id);
+        return sendResponseHttpByJson(SUCCESS_CODE, "Post is saved.", posts_id);
     }
 
     @GetMapping("api/v1/posts/{postsId}")
     public ResponseEntity<ResponseApiMessage> findById(@PathVariable Long postsId) {
         PostsResponseDto responseDto = postsService.findById(postsId);
 
-        return sendResponseHttpByJson(SUCCES_CODE, "Post is loaded. POST_ID=" + postsId, responseDto);
+        return sendResponseHttpByJson(SUCCESS_CODE, "Post is loaded. POST_ID=" + postsId, responseDto);
     }
 
     @GetMapping("api/v1/posts")
     public ResponseEntity<ResponseApiMessage> findAllPosts() {
         List<PostsResponseDto> responseDtoList = postsService.findAll();
 
-        return sendResponseHttpByJson(SUCCES_CODE, "All posts are loaded", responseDtoList);
+        return sendResponseHttpByJson(SUCCESS_CODE, "All posts are loaded", responseDtoList);
     }
 
     @PutMapping("api/v1/posts/{postsId}")
     public ResponseEntity<ResponseApiMessage> update(@PathVariable Long postsId, @RequestBody PostsUpdateRequestDto requestDto){
         PostsResponseDto responseDto = postsService.update(postsId, requestDto);
 
-        return sendResponseHttpByJson(SUCCES_CODE, "Post is updated. POST_ID=" + postsId, responseDto);
+        return sendResponseHttpByJson(SUCCESS_CODE, "Post is updated. POST_ID=" + postsId, responseDto);
     }
 
     @DeleteMapping("api/v1/posts/{postsId}")
     public ResponseEntity<ResponseApiMessage> delete(@PathVariable Long postsId) {
         Long posts_id = postsService.delete(postsId);
 
-        return sendResponseHttpByJson(SUCCES_CODE, "Post is deleted. POST_ID=" + postsId, posts_id);
+        return sendResponseHttpByJson(SUCCESS_CODE, "Post is deleted. POST_ID=" + postsId, posts_id);
     }
 }

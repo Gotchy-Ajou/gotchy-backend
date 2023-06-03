@@ -34,4 +34,10 @@ public class Hobby {
         this.hobbyLevel = hobbyLevel;
         return this;
     }
+
+    // Hobby와 Users의 연관관계 생성 메소드
+    public void addUsers(Users users) {
+        this.users = users;
+        users.getHobbyList().add(this);
+    }
 }

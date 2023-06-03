@@ -1,10 +1,12 @@
 package ajou.se.gotchy.service;
 
+import ajou.se.gotchy.domain.dto.Hobby.HobbyResponseDto;
 import ajou.se.gotchy.domain.dto.Users.UserWithGotchyResponseDto;
 import ajou.se.gotchy.domain.dto.Users.UsersResponseDto;
 import ajou.se.gotchy.domain.dto.Users.UsersSaveRequestDto;
 import ajou.se.gotchy.domain.dto.Users.UsersUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Gotchy;
+import ajou.se.gotchy.domain.entity.Posts;
 import ajou.se.gotchy.domain.entity.Users;
 import ajou.se.gotchy.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -71,10 +73,8 @@ public class UsersService {
         Users users = findUsers(usersId);
         Gotchy gotchy = gotchyService.findGotchy(gotchyId);
         users.addGotchy(gotchy);
-
     }
 
-    @Transactional
     public List<UserWithGotchyResponseDto> findMyApply(Long usersId) {
         List<UserWithGotchyResponseDto> userWithGotchyResponseDtoList = new ArrayList<>();
         Users users = findUsers(usersId);

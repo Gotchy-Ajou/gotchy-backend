@@ -14,7 +14,7 @@ public class UserWithGotchyResponseDto {
     String gotchyName;
     String gotchyMode;
     String gotchyHobby;
-    LocalDate gotchyDate;
+    String gotchyDate;
     String location;
     int headcount;
 

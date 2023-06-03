@@ -12,7 +12,7 @@ public class GotchyResponseDto {
     String gotchyName;
     String mode;
     String gotchyHobby;
-    LocalDate gotchyDate;
+    String gotchyDate;
     String gotchyTime;
     String location;
     String gotchyPhotoUrl;

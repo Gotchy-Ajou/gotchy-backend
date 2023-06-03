@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class GotchyController extends BaseController {
-    private static int SUCCESS_CODE = 200;
+    private final static int SUCCESS_CODE = 200;
 
     private final GotchyService gotchyService;
 
@@ -54,9 +54,9 @@ public class GotchyController extends BaseController {
         return sendResponseHttpByJson(SUCCESS_CODE, "Gotchy is deleted. GOTCHY_ID=" + gotchyId, gotchy_id);
     }
 
-    @GetMapping("api/v1/gotchy")
-    public ResponseEntity<ResponseApiMessage> findByDate(@PathVariable LocalDate gotchyDate) {
-        List<GotchyResponseDto> responseDtoList = gotchyService.findbyDate(gotchyDate);
+    @GetMapping("api/v1/gotchy/{gotchyDate}")
+    public ResponseEntity<ResponseApiMessage> findByDate(@PathVariable String gotchyDate) {
+        List<GotchyResponseDto> responseDtoList = gotchyService.findByDate(gotchyDate);
 
         return sendResponseHttpByJson(SUCCESS_CODE, "All gotchys in Date=" + gotchyDate + "are loaded.", responseDtoList);
     }

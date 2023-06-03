@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class UsersController extends BaseController {
-    private static int SUCCESS_CODE = 200;
+    private final static int SUCCESS_CODE = 200;
 
     private final UsersService usersService;
 
@@ -60,7 +60,7 @@ public class UsersController extends BaseController {
         return sendResponseHttpByJson(SUCCESS_CODE, "Gotchy has applied to User. GOTCHY_ID=" + gotchy_id + "USER_ID=" + users_id, requestDto);
     }
 
-    @GetMapping("api/v1/users/{usersId}")
+    @GetMapping("api/v1/users/{usersId}/my-apply")
     public ResponseEntity<ResponseApiMessage> findMyApply(@PathVariable Long usersId) {
         List<UserWithGotchyResponseDto> responseDtoList = usersService.findMyApply(usersId);
 

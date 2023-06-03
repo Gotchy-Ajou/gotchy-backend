@@ -11,11 +11,20 @@ import java.nio.charset.StandardCharsets;
 @Controller
 class BaseController {
 
-    public ResponseEntity<ResponseApiMessage> sendResponseHttpByJson(int httpStatus, String message, Object responseDate) {
+    /**
+     * JSON 형식으로 HTTP 응답을 생성하여 반환하는 메소드
+     *
+     * @param httpStatus   HTTP 상태 코드
+     * @param message      응답 메시지
+     * @param responseData 응답 데이터
+     * @return ResponseEntity 객체, JSON 응답, HTTP 상태 코드
+     */
+
+    public ResponseEntity<ResponseApiMessage> sendResponseHttpByJson(int httpStatus, String message, Object responseData) {
         ResponseApiMessage responseApiMessage = ResponseApiMessage.builder()
                 .httpStatus(httpStatus)
                 .message(message)
-                .responseDate(responseDate)
+                .responseDate(responseData)
                 .build();
 
         HttpHeaders headers = new HttpHeaders();

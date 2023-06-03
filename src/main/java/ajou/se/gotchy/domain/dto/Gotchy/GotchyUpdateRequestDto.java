@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class GotchyUpdateRequestDto {
     String gotchyName;
     String mode;
-    LocalDate gotchyDate;
+    String gotchyDate;
     String gotchyTime;
     String location;
     String gotchyPhotoUrl;

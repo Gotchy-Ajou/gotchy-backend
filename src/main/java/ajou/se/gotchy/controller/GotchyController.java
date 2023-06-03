@@ -41,7 +41,7 @@ public class GotchyController extends BaseController {
         return sendResponseHttpByJson(SUCCESS_CODE, "All gotchys are loaded.", responseDtoList);
     }
 
-    @PostMapping("api/vi/gotchy")
+    @PostMapping("api/vi/gotchyflter")
     public ResponseEntity<ResponseApiMessage> getFilter(@RequestBody GotchySaveRequestDto req) {
         List<GotchyResponseDto> responseDtoList = gotchyService.getFilter(req);
 

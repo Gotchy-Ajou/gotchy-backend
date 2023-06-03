@@ -15,7 +15,7 @@ public class GotchySaveRequestDto {
     String location;
     String gotchyPhotoUrl;
     int price;
-    int headcount;
+    Integer headcount;
     String level;
     String gender;
     String useTime;

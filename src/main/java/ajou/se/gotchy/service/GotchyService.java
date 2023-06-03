@@ -45,6 +45,32 @@ public class GotchyService {
         return gotchyResponseDtoList;
     }
 
+    public List<GotchyResponseDto> getFilter(GotchySaveRequestDto dto) {
+        List<GotchyResponseDto> gotchyResponseDtoList = new ArrayList<>();
+        List<Gotchy> gotchyList = new ArrayList<>();
+        if(dto.getMode() != null && !dto.getMode().isEmpty()){
+            gotchyList = gotchyRepository.findByMode(dto.getMode());
+        }else if(dto.getLocation() != null && !dto.getLocation().isEmpty()){
+            gotchyList = gotchyRepository.findByLocation(dto.getLocation());
+        }else if(dto.getLevel() != null && !dto.getLevel().isEmpty()){
+            gotchyList = gotchyRepository.findByLevel(dto.getLevel());
+        }else if(dto.getGender() != null && !dto.getGender().isEmpty()){
+            gotchyList = gotchyRepository.findByGender(dto.getGender());
+        }else if(dto.getHeadcount() != null && dto.getHeadcount() > 0) {
+            gotchyList = gotchyRepository.findByHeadcount(dto.getHeadcount());
+        }else if((dto.getGotchyHobby() != null && !dto.getGotchyHobby().isEmpty())){
+            gotchyList = gotchyRepository.findByGotchyHobby(dto.getGotchyHobby());
+        }else{
+            gotchyList = gotchyRepository.findAll();
+        }
+
+        for(Gotchy gotchy : gotchyList) {
+            gotchyResponseDtoList.add(new GotchyResponseDto(gotchy));
+        }
+
+        return gotchyResponseDtoList;
+    }
+
     @Transactional
     public GotchyResponseDto update(Long gotchyId, GotchyUpdateRequestDto requestDto) {
         Gotchy gotchy = findGotchy(gotchyId);

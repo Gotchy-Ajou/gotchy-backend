@@ -1,4 +1,4 @@
-package ajou.se.gotchy.domain.dto;
+package ajou.se.gotchy.domain.dto.Gotchy;
 
 import ajou.se.gotchy.domain.entity.Gotchy;
 import lombok.Getter;
@@ -9,9 +9,11 @@ import java.time.format.DateTimeFormatter;
 @Getter
 public class GotchyResponseDto {
     Long gotchyId;
+    String gotchyName;
     String mode;
     String gotchyHobby;
-    LocalDate gotchyDate;
+    String gotchyDate;
+    String gotchyTime;
     String location;
     String gotchyPhotoUrl;
     int price;
@@ -22,11 +24,13 @@ public class GotchyResponseDto {
     String createdDate;
     String modifiedDate;
 
-    public GotchyResponseDto(Gotchy gotchy){
+    public GotchyResponseDto(Gotchy gotchy) {
         this.gotchyId = gotchy.getGotchyId();
+        this.gotchyName = gotchy.getGotchyName();
         this.mode = gotchy.getMode();
         this.gotchyHobby = gotchy.getGotchyHobby();
         this.gotchyDate = gotchy.getGotchyDate();
+        this.gotchyTime = gotchy.getGotchyTime();
         this.location = gotchy.getLocation();
         this.gotchyPhotoUrl = gotchy.getGotchyPhotoUrl();
         this.price = gotchy.getPrice();

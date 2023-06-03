@@ -21,7 +21,7 @@ public class Hobby {
     private String hobbyLevel;
 
     @ManyToOne
-    @JoinColumn(name = "usersId")
+    @JoinColumn(name = "users")
     private Users users;
 
     @Builder
@@ -33,5 +33,11 @@ public class Hobby {
     public Hobby update(String hobbyLevel){
         this.hobbyLevel = hobbyLevel;
         return this;
+    }
+
+    // Hobby와 Users의 연관관계 생성 메소드
+    public void addUsers(Users users) {
+        this.users = users;
+        users.getHobbyList().add(this);
     }
 }

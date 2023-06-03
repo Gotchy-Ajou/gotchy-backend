@@ -23,13 +23,13 @@ public class Users extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long usersId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String password;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nickname;
 
     @Column
@@ -41,7 +41,7 @@ public class Users extends BaseTimeEntity {
     @Column(nullable = false)
     private int age;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phone;
 
     @Column(nullable = false)
@@ -50,17 +50,20 @@ public class Users extends BaseTimeEntity {
     @Column(nullable = false)
     private String manner;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String account;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private Role role;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private List<Gotchy> gotchyList = new ArrayList<>();
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<Hobby> hobbyList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Posts> postsList = new ArrayList<>();
 
     @CreatedDate
@@ -99,4 +102,10 @@ public class Users extends BaseTimeEntity {
     public String getRoleKey(){
         return this.role.getKey();
     }
+
+    // Gotchy와 Users 연관관계 매핑 메소드 (단방향 Gothcy -> Users)
+    public void addGotchy(Gotchy gotchy) {
+        this.gotchyList.add(gotchy);
+    }
+
 }

@@ -1,8 +1,8 @@
 package ajou.se.gotchy.service;
 
-import ajou.se.gotchy.domain.dto.PostsResponseDto;
-import ajou.se.gotchy.domain.dto.PostsSaveRequestDto;
-import ajou.se.gotchy.domain.dto.PostsUpdateReqeustDto;
+import ajou.se.gotchy.domain.dto.Posts.PostsResponseDto;
+import ajou.se.gotchy.domain.dto.Posts.PostsSaveRequestDto;
+import ajou.se.gotchy.domain.dto.Posts.PostsUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Posts;
 import ajou.se.gotchy.domain.entity.Users;
 import ajou.se.gotchy.repository.PostsRepository;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class PostsSerivce {
+public class PostsService {
     private final PostsRepository postsRepository;
     private final UsersRepository usersRepository;
 
@@ -55,7 +55,7 @@ public class PostsSerivce {
     }
 
     @Transactional
-    public PostsResponseDto update(Long postsId, PostsUpdateReqeustDto reqeustDto) {
+    public PostsResponseDto update(Long postsId, PostsUpdateRequestDto reqeustDto) {
         Posts posts = findPosts(postsId);
         posts.update(reqeustDto.getTitle(), reqeustDto.getContent());
 

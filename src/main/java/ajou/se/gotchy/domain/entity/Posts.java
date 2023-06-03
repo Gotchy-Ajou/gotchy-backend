@@ -21,7 +21,7 @@ public class Posts extends BaseTimeEntity {
     private Long postsId;
 
     @ManyToOne
-    @JoinColumn(name = "nickname")
+    @JoinColumn(name = "author")
     private Users author;
 
     @Column(length = 500, nullable = false)
@@ -50,5 +50,11 @@ public class Posts extends BaseTimeEntity {
         this.content = content;
 
         return this;
+    }
+
+    // Posts와 Users의 연관관계 매핑 메소드 (양방향)
+    public void setAuthor(Users author) {
+        this.author = author;
+        author.getPostsList().add(this); // Users 엔티티의 postsList에도 해당 게시물 추가
     }
 }

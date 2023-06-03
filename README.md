@@ -20,13 +20,19 @@
 - Role (enum)
 - createdDate
 - modifiedDate
+- gotchyList
+- hobbyList
+- postsList
 
 ### Gotchy
 
 - gotchyId → Long (PK)
+- users (JoinColumn) → Users (객체)
+- gotchyName → String
 - mode (모집인지 아닌지/모집 진행,완료 여부) → String
 - gotchyHobby → String
-- date → String
+- gotchyDate → String
+- gotchyTime → String
 - location → String
 - photoUrl → String
 - price → int
@@ -40,9 +46,9 @@
 ### Posts
 
 - postsId → Long (PK)
+- author (JoinColumn) → Users (객체)
 - title → String
 - content → String
-- author → String
 - createdDate
 - modifiedDate
 
@@ -51,6 +57,7 @@
 - hobbyId → Long (PK)
 - hobbyName → String
 - hobbyLevel → String
+- users (JoinColumn) → Users
 
 ### 기능↔API
 
@@ -58,27 +65,33 @@
 
 ### 사용자
 
-- [x]  회원가입 → Users save [POST]
-- [x]  정보 수정 → Users update [PUT]
+- [x]  회원가입 → UsersController save [POST]
+- [x]  정보 수정 → UsersController update [PUT]
 - [ ]  로그인/로그아웃 → 사용자 계정
-- [x]  프로필 정보 조회(사용자 접근) → Users findById [GET]
-- [ ]  가치 신청 내역 조회 → Users에 있는 Gotchy List 이용
-- [x]  공지사항 조회 → Posts findAll [GET], Posts findById [GET]
-- [x]  취미별 레벨 등록 → Hobby save [POST]
-- [ ]  취미별 레벨 조회 → Hobby findAll [GET]
-- [x]  취미별 레벨 수정 → Hobby update [PUT]
-- [ ]  가치 조회(날짜 선택) → Gotchy findAll [GET] , Gotchy findByDate [GET]
-- [ ]  가치 조회(필터링)
-- [x]  가치 상세 페이지 조회 → Gotchy findById [GET]
-- [x]  가치 신청 → Gotchy save [POST]
-- [x]  가치 모집 등록 → Gotchy save [POST]
 - [ ]  권한 부여 (공지사항 조회만 가능하게)
+- [x]  프로필 정보 조회(사용자 접근) → UsersController findById [GET]
+- [x]  가치 신청 내역 조회 → UsersController findMyApply [GET] 
+- [x]  공지사항 조회 → (전체)PostsController findAll [GET], (상세, 단건)PostsController findById [GET]
+- [x]  취미별 레벨 등록 → HobbyController save [POST]
+- [x]  취미별 레벨 조회 → HobbyController findAll [GET]
+- [x]  취미별 레벨 수정 → HobbyController update [PUT]
+- [x]  가치 조회(날짜별 조회) → GotchyController findByDate [GET]
+- [ ]  가치 조회(필터링 적용 시)
+- [x]  가치 상세 페이지 조회 → GotchyController findById [GET]
+- [x]  가치 등록 (모집) → GotchyController save [POST]
+- [x]  가치 신청 → UsersController apply [POST]
 
 ### 관리자
 
 - [ ]  로그인/로그아웃 → 관리자 계정 Users 엔티티에 필요 (미리 db에 등록해놔야함)
 - [ ]  권한 부여 (공지사항 등록, 수정, 조회, 삭제 가능)
-- [x]  공지사항 등록 → Posts save [POST]
-- [x]  공지사항 수정 → Posts update [PUT]
-- [x]  공지사항 조회 → Posts findById [GET], Posts findAll [GET]
-- [x]  공지사항 삭제 → Posts delete [DELETE]
+- [x]  공지사항 등록 → PostsController save [POST]
+- [x]  공지사항 수정 → PostsController update [PUT]
+- [x]  공지사항 조회 → (전체)PostsController findAll [GET], (상세, 단건)PostsController findById [GET]
+- [x]  공지사항 삭제 → PostsController delete [DELETE]
+- [x]  가치 등록 (관리자 등록) → GotchyController save [POST]
+
+### 연관관계 매핑
+- Posts, Users (양방향)
+- Gotchy → Users (단방향)
+- Hobby → Users (단방향)

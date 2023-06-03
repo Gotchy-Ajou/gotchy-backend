@@ -22,6 +22,13 @@ public class Gotchy extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gotchyId;
 
+    @ManyToOne
+    @JoinColumn(name = "users")
+    private Users users;
+
+    @Column(nullable = false)
+    private String gotchyName;
+
     @Column(nullable = false)
     private String mode;
 
@@ -29,8 +36,10 @@ public class Gotchy extends BaseTimeEntity {
     private String gotchyHobby;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private LocalDate gotchyDate;
+    private String gotchyDate;
+
+    @Column(nullable = false)
+    private String gotchyTime;
 
     @Column(nullable = false)
     private String location;
@@ -60,10 +69,12 @@ public class Gotchy extends BaseTimeEntity {
     LocalDateTime modifiedDate;
 
     @Builder
-    public Gotchy(String mode, String gotchyHobby, LocalDate gotchyDate, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
+    public Gotchy(String gotchyName, String mode, String gotchyHobby, String gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
+        this.gotchyName = gotchyName;
         this.mode = mode;
         this.gotchyHobby = gotchyHobby;
         this.gotchyDate = gotchyDate;
+        this.gotchyTime = gotchyTime;
         this.location = location;
         this.gotchyPhotoUrl = gotchyPhotoUrl;
         this.price = price;
@@ -75,9 +86,11 @@ public class Gotchy extends BaseTimeEntity {
         this.modifiedDate = LocalDateTime.now();
     }
 
-    public Gotchy update(String mode, LocalDate gotchyDate, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
+    public Gotchy update(String gotchyName, String mode, String gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
+        this.gotchyName = gotchyName;
         this.mode = mode;
         this.gotchyDate = gotchyDate;
+        this.gotchyTime = gotchyTime;
         this.location = location;
         this.gotchyPhotoUrl = gotchyPhotoUrl;
         this.price = price;

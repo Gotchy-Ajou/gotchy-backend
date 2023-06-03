@@ -1,4 +1,4 @@
-package ajou.se.gotchy.domain.dto;
+package ajou.se.gotchy.domain.dto.Gotchy;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,8 +8,10 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 public class GotchyUpdateRequestDto {
+    String gotchyName;
     String mode;
-    LocalDate gotchyDate;
+    String gotchyDate;
+    String gotchyTime;
     String location;
     String gotchyPhotoUrl;
     int price;

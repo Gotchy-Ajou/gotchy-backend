@@ -5,11 +5,14 @@ import ajou.se.gotchy.domain.dto.Gotchy.GotchySaveRequestDto;
 import ajou.se.gotchy.domain.dto.Gotchy.GotchyUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Gotchy;
 import ajou.se.gotchy.repository.GotchyRepository;
+import ajou.se.gotchy.repository.GotchySpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +20,7 @@ import java.util.List;
 @Service
 public class GotchyService {
     private final GotchyRepository gotchyRepository;
+    private final GotchySpecifications gotchySpecifications;
 
     public Gotchy findGotchy(Long gotchyId) {
         return gotchyRepository.findById(gotchyId)
@@ -47,27 +51,12 @@ public class GotchyService {
     }
 
     public List<GotchyResponseDto> getFilter(GotchySaveRequestDto dto) {
-        List<GotchyResponseDto> gotchyResponseDtoList = new ArrayList<>();
-        List<Gotchy> gotchyList = new ArrayList<>();
-        if(dto.getMode() != null && !dto.getMode().isEmpty()){
-            gotchyList = gotchyRepository.findByMode(dto.getMode());
-        }else if(dto.getLocation() != null && !dto.getLocation().isEmpty()){
-            gotchyList = gotchyRepository.findByLocation(dto.getLocation());
-        }else if(dto.getLevel() != null && !dto.getLevel().isEmpty()){
-            gotchyList = gotchyRepository.findByLevel(dto.getLevel());
-        }else if(dto.getGender() != null && !dto.getGender().isEmpty()){
-            gotchyList = gotchyRepository.findByGender(dto.getGender());
-        }else if(dto.getHeadcount() != null && dto.getHeadcount() > 0) {
-            gotchyList = gotchyRepository.findByHeadcount(dto.getHeadcount());
-        }else if((dto.getGotchyHobby() != null && !dto.getGotchyHobby().isEmpty())){
-            gotchyList = gotchyRepository.findByGotchyHobby(dto.getGotchyHobby());
-        }else{
-            gotchyList = gotchyRepository.findAll();
-        }
+        Specification<Gotchy> specification = gotchySpecifications.withFilter(dto);
+        List<Gotchy> gotchyList = gotchyRepository.findAll(specification);
 
-        for(Gotchy gotchy : gotchyList) {
-            gotchyResponseDtoList.add(new GotchyResponseDto(gotchy));
-        }
+        List<GotchyResponseDto> gotchyResponseDtoList = gotchyList.stream()
+                .map(GotchyResponseDto::new)
+                .collect(Collectors.toList());
 
         return gotchyResponseDtoList;
     }

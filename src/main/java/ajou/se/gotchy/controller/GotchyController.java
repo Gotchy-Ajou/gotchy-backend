@@ -1,20 +1,23 @@
 package ajou.se.gotchy.controller;
 
 import ajou.se.gotchy.domain.ResponseApiMessage;
-import ajou.se.gotchy.domain.dto.GotchyResponseDto;
-import ajou.se.gotchy.domain.dto.GotchySaveRequestDto;
-import ajou.se.gotchy.domain.dto.GotchyUpdateRequestDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchyResponseDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchySaveRequestDto;
+import ajou.se.gotchy.domain.dto.Gotchy.GotchyUpdateRequestDto;
 import ajou.se.gotchy.service.GotchyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+
+
 
 @RequiredArgsConstructor
 @RestController
 public class GotchyController extends BaseController {
-    private static int SUCCESS_CODE = 200;
+    private final static int SUCCESS_CODE = 200;
 
     private final GotchyService gotchyService;
 
@@ -39,6 +42,13 @@ public class GotchyController extends BaseController {
         return sendResponseHttpByJson(SUCCESS_CODE, "All gotchys are loaded.", responseDtoList);
     }
 
+    @PostMapping("api/vi/gotchyfilter")
+    public ResponseEntity<ResponseApiMessage> getFilter(@RequestBody GotchySaveRequestDto req) {
+        List<GotchyResponseDto> responseDtoList = gotchyService.getFilter(req);
+
+        return sendResponseHttpByJson(SUCCESS_CODE, "Selected gotchys are loaded.", responseDtoList);
+    }
+
     @PutMapping("api/v1/gotchy/{gotchyId}")
     public ResponseEntity<ResponseApiMessage> update(@PathVariable Long gotchyId, @RequestBody GotchyUpdateRequestDto requestDto) {
         GotchyResponseDto responseDto = gotchyService.update(gotchyId, requestDto);
@@ -51,5 +61,12 @@ public class GotchyController extends BaseController {
         Long gotchy_id = gotchyService.delete(gotchyId);
 
         return sendResponseHttpByJson(SUCCESS_CODE, "Gotchy is deleted. GOTCHY_ID=" + gotchyId, gotchy_id);
+    }
+
+    @GetMapping("api/v1/gotchy/{gotchyDate}")
+    public ResponseEntity<ResponseApiMessage> findByDate(@PathVariable String gotchyDate) {
+        List<GotchyResponseDto> responseDtoList = gotchyService.findByDate(gotchyDate);
+
+        return sendResponseHttpByJson(SUCCESS_CODE, "All gotchys in Date=" + gotchyDate + "are loaded.", responseDtoList);
     }
 }

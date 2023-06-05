@@ -1,8 +1,12 @@
 package ajou.se.gotchy.service;
 
-import ajou.se.gotchy.domain.dto.UsersResponseDto;
-import ajou.se.gotchy.domain.dto.UsersSaveRequestDto;
-import ajou.se.gotchy.domain.dto.UsersUpdateRequestDto;
+import ajou.se.gotchy.domain.dto.Hobby.HobbyResponseDto;
+import ajou.se.gotchy.domain.dto.Users.UserWithGotchyResponseDto;
+import ajou.se.gotchy.domain.dto.Users.UsersResponseDto;
+import ajou.se.gotchy.domain.dto.Users.UsersSaveRequestDto;
+import ajou.se.gotchy.domain.dto.Users.UsersUpdateRequestDto;
+import ajou.se.gotchy.domain.entity.Gotchy;
+import ajou.se.gotchy.domain.entity.Posts;
 import ajou.se.gotchy.domain.entity.Users;
 import ajou.se.gotchy.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +20,7 @@ import java.util.List;
 @Service
 public class UsersService {
     private final UsersRepository usersRepository;
+    private final GotchyService gotchyService;
 
     public Users findUsers(Long usersId) {
         return usersRepository.findById(usersId)
@@ -62,4 +67,24 @@ public class UsersService {
 
         return usersId;
     }
+
+    @Transactional
+    public void apply(Long usersId, Long gotchyId){
+        Users users = findUsers(usersId);
+        Gotchy gotchy = gotchyService.findGotchy(gotchyId);
+        users.addGotchy(gotchy);
+    }
+
+    public List<UserWithGotchyResponseDto> findMyApply(Long usersId) {
+        List<UserWithGotchyResponseDto> userWithGotchyResponseDtoList = new ArrayList<>();
+        Users users = findUsers(usersId);
+        List<Gotchy> gotchyList = users.getGotchyList();
+
+        for (Gotchy gotchy : gotchyList) {
+            userWithGotchyResponseDtoList.add(new UserWithGotchyResponseDto(users, gotchy));
+        }
+
+        return userWithGotchyResponseDtoList;
+    }
+
 }

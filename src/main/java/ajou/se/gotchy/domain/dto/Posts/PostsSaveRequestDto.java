@@ -1,4 +1,4 @@
-package ajou.se.gotchy.domain.dto;
+package ajou.se.gotchy.domain.dto.Posts;
 
 import ajou.se.gotchy.domain.entity.Posts;
 import ajou.se.gotchy.domain.entity.Users;
@@ -18,5 +18,12 @@ public class PostsSaveRequestDto {
                 .content(content)
                 .author(author)
                 .build();
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class PostsUpdateRequestDto {
+        String title;
+        String content;
     }
 }

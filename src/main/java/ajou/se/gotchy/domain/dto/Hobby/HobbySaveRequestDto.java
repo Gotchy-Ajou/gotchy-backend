@@ -1,4 +1,4 @@
-package ajou.se.gotchy.domain.dto;
+package ajou.se.gotchy.domain.dto.Hobby;
 
 import ajou.se.gotchy.domain.entity.Hobby;
 import lombok.Getter;

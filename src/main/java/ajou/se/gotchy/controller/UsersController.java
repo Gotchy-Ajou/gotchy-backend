@@ -66,4 +66,9 @@ public class UsersController extends BaseController {
 
         return sendResponseHttpByJson(SUCCESS_CODE, "All applied gotchys are loaded. USER_ID=" + usersId, responseDtoList);
     }
+
+    @GetMapping("api/v1/users/login")
+    public String login() {
+        return "login_form";
+    }
 }

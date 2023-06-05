@@ -100,7 +100,7 @@ public class Users extends BaseTimeEntity {
     }
 
     public String getRoleKey(){
-        return this.role.getKey();
+        return this.role.getValue();
     }
 
     // Gotchy와 Users 연관관계 매핑 메소드 (단방향 Gothcy -> Users)

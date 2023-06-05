@@ -24,7 +24,7 @@ class BaseController {
         ResponseApiMessage responseApiMessage = ResponseApiMessage.builder()
                 .httpStatus(httpStatus)
                 .message(message)
-                .responseDate(responseData)
+                .responseData(responseData)
                 .build();
 
         HttpHeaders headers = new HttpHeaders();

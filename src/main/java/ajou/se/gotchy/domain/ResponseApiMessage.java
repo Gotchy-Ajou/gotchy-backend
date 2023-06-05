@@ -12,9 +12,9 @@ public class ResponseApiMessage {
     Object responseDate;
 
     @Builder
-    public ResponseApiMessage(int httpStatus, String message, Object responseDate){
+    public ResponseApiMessage(int httpStatus, String message, Object responseData){
         this.httpStatus = httpStatus;
         this.message = message;
-        this.responseDate = responseDate;
+        this.responseDate = responseData;
     }
 }

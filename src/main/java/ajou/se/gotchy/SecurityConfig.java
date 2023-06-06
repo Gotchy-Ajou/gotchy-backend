@@ -1,4 +1,4 @@
-package ajou.se.gotchy.security;
+package ajou.se.gotchy;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,23 +19,22 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().requestMatchers(
                 new AntPathRequestMatcher("/**")).permitAll()
-        	.and()
-        		.csrf().ignoringRequestMatchers(
-        				new AntPathRequestMatcher("/h2-console/**"))
-        	.and()
+                .and()
+                .csrf().ignoringRequestMatchers(
+                        new AntPathRequestMatcher("/h2-console/**"))
+                .and()
                 .headers()
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(
                         XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
-            .and()
+                .and()
                 .formLogin()
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/")
-            .and()
+                .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-        		;
+                .invalidateHttpSession(true);
         return http.build();
     }
 
@@ -45,7 +44,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 }

@@ -101,4 +101,8 @@ public class Gotchy extends BaseTimeEntity {
 
         return this;
     }
+
+    public void addUsers(Users users){
+        this.users = users;
+    }
 }

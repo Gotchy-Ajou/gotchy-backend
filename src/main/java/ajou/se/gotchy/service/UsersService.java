@@ -6,6 +6,7 @@ import ajou.se.gotchy.domain.dto.Users.UsersSaveRequestDto;
 import ajou.se.gotchy.domain.dto.Users.UsersUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Gotchy;
 import ajou.se.gotchy.domain.entity.Users;
+import ajou.se.gotchy.repository.GotchyRepository;
 import ajou.se.gotchy.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.List;
 public class UsersService {
     private final UsersRepository usersRepository;
     private final GotchyService gotchyService;
+    private final GotchyRepository gotchyRepository;
 
     public Users findUsers(Long usersId) {
         return usersRepository.findById(usersId)
@@ -69,8 +71,10 @@ public class UsersService {
     @Transactional
     public void apply(Long usersId, Long gotchyId){
         Users users = findUsers(usersId);
-        Gotchy gotchy = gotchyService.findGotchy(gotchyId);
+        Gotchy gotchy = gotchyRepository.findById(gotchyId)
+                        .orElseThrow(() -> new IllegalArgumentException("해당 가치가 없습니다. GOTCHY_ID=" + gotchyId));
         users.addGotchy(gotchy);
+        gotchy.addUsers(users);
     }
 
     public List<UserWithGotchyResponseDto> findMyApply(Long usersId) {

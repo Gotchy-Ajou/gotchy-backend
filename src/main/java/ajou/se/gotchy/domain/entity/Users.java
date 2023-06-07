@@ -23,34 +23,34 @@ public class Users extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long usersId;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String nickname;
 
     @Column
     private String photoUrl;
 
-    @Column(nullable = false)
+    @Column
     private String gender;
 
-    @Column(nullable = false)
+    @Column
     private int age;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String phone;
 
-    @Column(nullable = false)
+    @Column
     private String region;
 
-    @Column(nullable = false)
+    @Column
     private String manner;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String account;
 
     @Enumerated(EnumType.STRING)
@@ -63,7 +63,7 @@ public class Users extends BaseTimeEntity {
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<Hobby> hobbyList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<Posts> postsList = new ArrayList<>();
 
     @CreatedDate

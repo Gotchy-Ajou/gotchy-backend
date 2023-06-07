@@ -32,7 +32,8 @@ public class PostsService {
 
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
-        Posts posts = requestDto.toEntity();
+        Users users = findUsers(requestDto.getAuthorId());
+        Posts posts = Posts.createPost(users, requestDto.getTitle(), requestDto.getContent());
 
         return postsRepository.save(posts).getPostsId();
     }
@@ -55,9 +56,9 @@ public class PostsService {
     }
 
     @Transactional
-    public PostsResponseDto update(Long postsId, PostsUpdateRequestDto reqeustDto) {
+    public PostsResponseDto update(Long postsId, PostsUpdateRequestDto requestDto) {
         Posts posts = findPosts(postsId);
-        posts.update(reqeustDto.getTitle(), reqeustDto.getContent());
+        posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return new PostsResponseDto(posts);
     }

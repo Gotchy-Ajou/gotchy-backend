@@ -26,40 +26,40 @@ public class Gotchy extends BaseTimeEntity {
     @JoinColumn(name = "users")
     private Users users;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyName;
 
-    @Column(nullable = false)
+    @Column
     private String mode;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyHobby;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyDate;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyTime;
 
-    @Column(nullable = false)
+    @Column
     private String location;
 
     @Column
     private String gotchyPhotoUrl;
 
-    @Column(nullable = false)
+    @Column
     private int price;
 
-    @Column(nullable = false)
+    @Column
     private int headcount;
 
-    @Column(nullable = false)
+    @Column
     private String level;
 
     @Column
     private String gender;
 
-    @Column(nullable = false)
+    @Column
     private String useTime;
 
     @CreatedDate

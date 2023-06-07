@@ -21,13 +21,13 @@ public class Posts extends BaseTimeEntity {
     private Long postsId;
 
     @ManyToOne
-    @JoinColumn(name = "author")
-    private Users author;
+    @JoinColumn(name = "users")
+    private Users users;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 500)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column
     private String content;
 
     @CreatedDate
@@ -37,8 +37,7 @@ public class Posts extends BaseTimeEntity {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public Posts(Users author, String title, String content){
-        this.author = author;
+    public Posts(String title, String content){
         this.title = title;
         this.content = content;
         this.createdDate = LocalDateTime.now();
@@ -53,8 +52,19 @@ public class Posts extends BaseTimeEntity {
     }
 
     // Posts와 Users의 연관관계 매핑 메소드 (양방향)
-    public void setAuthor(Users author) {
-        this.author = author;
-        author.getPostsList().add(this); // Users 엔티티의 postsList에도 해당 게시물 추가
+    static public Posts createPost(Users users, String title, String content) {
+        Posts posts = Posts.builder()
+                .title(title)
+                .content(content)
+                .build();
+
+        posts.addUser(users);
+
+        return posts;
+    }
+
+    public void addUser(Users users) {
+        users.getPostsList().add(this);
+        this.users = users;
     }
 }

@@ -1,12 +1,10 @@
 package ajou.se.gotchy.service;
 
-import ajou.se.gotchy.domain.dto.Hobby.HobbyResponseDto;
 import ajou.se.gotchy.domain.dto.Users.UserWithGotchyResponseDto;
 import ajou.se.gotchy.domain.dto.Users.UsersResponseDto;
 import ajou.se.gotchy.domain.dto.Users.UsersSaveRequestDto;
 import ajou.se.gotchy.domain.dto.Users.UsersUpdateRequestDto;
 import ajou.se.gotchy.domain.entity.Gotchy;
-import ajou.se.gotchy.domain.entity.Posts;
 import ajou.se.gotchy.domain.entity.Users;
 import ajou.se.gotchy.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;

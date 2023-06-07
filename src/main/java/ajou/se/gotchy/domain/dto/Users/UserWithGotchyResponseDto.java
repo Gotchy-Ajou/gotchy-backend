@@ -4,8 +4,6 @@ import ajou.se.gotchy.domain.entity.Gotchy;
 import ajou.se.gotchy.domain.entity.Users;
 import lombok.Getter;
 
-import java.time.LocalDate;
-
 @Getter
 public class UserWithGotchyResponseDto {
     Long usersId;

@@ -18,7 +18,7 @@ public class PostsResponseDto {
         this.postsId = posts.getPostsId();
         this.title = posts.getTitle();
         this.content = posts.getContent();
-        this.author = posts.getAuthor().getNickname();
+        this.author = posts.getUsers().getNickname();
         this.createdDate = posts.getCreatedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
         this.modifiedDate = posts.getModifiedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
     }

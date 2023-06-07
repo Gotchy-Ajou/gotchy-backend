@@ -35,14 +35,14 @@ public class GotchyController extends BaseController {
         return sendResponseHttpByJson(SUCCESS_CODE, "Gotchy is loaded. GOTCHY_ID=" + gotchyId, responseDto);
     }
 
-    @GetMapping("api/vi/gotchy")
+    @GetMapping("api/v1/gotchy")
     public ResponseEntity<ResponseApiMessage> findAll() {
         List<GotchyResponseDto> responseDtoList = gotchyService.findAll();
 
         return sendResponseHttpByJson(SUCCESS_CODE, "All gotchys are loaded.", responseDtoList);
     }
 
-    @PostMapping("api/vi/gotchyfilter")
+    @PostMapping("api/v1/gotchyfilter")
     public ResponseEntity<ResponseApiMessage> getFilter(@RequestBody GotchySaveRequestDto req) {
         List<GotchyResponseDto> responseDtoList = gotchyService.getFilter(req);
 
@@ -63,7 +63,7 @@ public class GotchyController extends BaseController {
         return sendResponseHttpByJson(SUCCESS_CODE, "Gotchy is deleted. GOTCHY_ID=" + gotchyId, gotchy_id);
     }
 
-    @GetMapping("api/v1/gotchy/{gotchyDate}")
+    @GetMapping("api/v1/gotchy/date/{gotchyDate}")
     public ResponseEntity<ResponseApiMessage> findByDate(@PathVariable String gotchyDate) {
         List<GotchyResponseDto> responseDtoList = gotchyService.findByDate(gotchyDate);
 

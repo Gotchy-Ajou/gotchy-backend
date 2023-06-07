@@ -14,10 +14,10 @@ public class Hobby {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hobbyId;
 
-    @Column(nullable = false)
+    @Column
     private String hobbyName;
 
-    @Column(nullable = false)
+    @Column
     private String hobbyLevel;
 
     @ManyToOne

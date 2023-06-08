@@ -61,10 +61,10 @@ public class Gotchy extends BaseTimeEntity {
     private String useTime;
 
     @CreatedDate
-    LocalDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
-    LocalDateTime modifiedDate;
+    private LocalDateTime modifiedDate;
 
     @Builder
     public Gotchy(String gotchyName, String mode, String gotchyHobby, String gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){

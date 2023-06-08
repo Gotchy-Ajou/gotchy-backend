@@ -13,6 +13,7 @@ public class UserWithGotchyResponseDto {
     String gotchyMode;
     String gotchyHobby;
     String gotchyDate;
+    String gotchyTime;
     String location;
     int headcount;
 
@@ -24,6 +25,7 @@ public class UserWithGotchyResponseDto {
         this.gotchyMode = gotchy.getMode();
         this.gotchyHobby = gotchy.getGotchyHobby();
         this.gotchyDate = gotchy.getGotchyDate();
+        this.gotchyTime = gotchy.getGotchyTime();
         this.location = gotchy.getLocation();
         this.headcount = gotchy.getHeadcount();
     }

@@ -19,7 +19,6 @@ import java.util.List;
 @Service
 public class UsersService {
     private final UsersRepository usersRepository;
-    private final GotchyService gotchyService;
     private final GotchyRepository gotchyRepository;
 
     public Users findUsers(Long usersId) {

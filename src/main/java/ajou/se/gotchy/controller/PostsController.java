@@ -3,6 +3,7 @@ package ajou.se.gotchy.controller;
 import ajou.se.gotchy.domain.ResponseApiMessage;
 import ajou.se.gotchy.domain.dto.Posts.PostsResponseDto;
 import ajou.se.gotchy.domain.dto.Posts.PostsSaveRequestDto;
+import ajou.se.gotchy.domain.dto.Posts.PostsUpdateRequestDto;
 import ajou.se.gotchy.service.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class PostsController extends BaseController{
     }
 
     @PutMapping("api/v1/posts/{postsId}")
-    public ResponseEntity<ResponseApiMessage> update(@PathVariable Long postsId, @RequestBody PostsSaveRequestDto.PostsUpdateRequestDto requestDto){
+    public ResponseEntity<ResponseApiMessage> update(@PathVariable Long postsId, @RequestBody PostsUpdateRequestDto requestDto){
         PostsResponseDto responseDto = postsService.update(postsId, requestDto);
 
         return sendResponseHttpByJson(SUCCESS_CODE, "Post is updated. POST_ID=" + postsId, responseDto);

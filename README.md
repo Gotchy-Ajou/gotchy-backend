@@ -70,7 +70,7 @@
 - [ ]  로그인/로그아웃 → 사용자 계정
 - [ ]  권한 부여 (공지사항 조회만 가능하게)
 - [x]  프로필 정보 조회(사용자 접근) → UsersController findById [GET]
-- [x]  가치 신청 내역 조회 → UsersController findMyApply [GET] 
+- [x]  가치 신청 내역 조회 → UsersController findMyApply [GET]
 - [x]  공지사항 조회 → (전체)PostsController findAll [GET], (상세, 단건)PostsController findById [GET]
 - [x]  취미별 레벨 등록 → HobbyController save [POST]
 - [x]  취미별 레벨 조회 → HobbyController findAll [GET]

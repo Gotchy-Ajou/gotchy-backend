@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -26,47 +24,47 @@ public class Gotchy extends BaseTimeEntity {
     @JoinColumn(name = "users")
     private Users users;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyName;
 
-    @Column(nullable = false)
+    @Column
     private String mode;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyHobby;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyDate;
 
-    @Column(nullable = false)
+    @Column
     private String gotchyTime;
 
-    @Column(nullable = false)
+    @Column
     private String location;
 
     @Column
     private String gotchyPhotoUrl;
 
-    @Column(nullable = false)
+    @Column
     private int price;
 
-    @Column(nullable = false)
+    @Column
     private int headcount;
 
-    @Column(nullable = false)
+    @Column
     private String level;
 
     @Column
     private String gender;
 
-    @Column(nullable = false)
+    @Column
     private String useTime;
 
     @CreatedDate
-    LocalDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
-    LocalDateTime modifiedDate;
+    private LocalDateTime modifiedDate;
 
     @Builder
     public Gotchy(String gotchyName, String mode, String gotchyHobby, String gotchyDate, String gotchyTime, String location, String gotchyPhotoUrl, int price, int headcount, String level, String gender, String useTime){
@@ -100,5 +98,9 @@ public class Gotchy extends BaseTimeEntity {
         this.useTime = useTime;
 
         return this;
+    }
+
+    public void addUsers(Users users){
+        this.users = users;
     }
 }

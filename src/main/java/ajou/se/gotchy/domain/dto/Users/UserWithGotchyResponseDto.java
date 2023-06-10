@@ -4,8 +4,6 @@ import ajou.se.gotchy.domain.entity.Gotchy;
 import ajou.se.gotchy.domain.entity.Users;
 import lombok.Getter;
 
-import java.time.LocalDate;
-
 @Getter
 public class UserWithGotchyResponseDto {
     Long usersId;
@@ -15,6 +13,7 @@ public class UserWithGotchyResponseDto {
     String gotchyMode;
     String gotchyHobby;
     String gotchyDate;
+    String gotchyTime;
     String location;
     int headcount;
 
@@ -26,6 +25,7 @@ public class UserWithGotchyResponseDto {
         this.gotchyMode = gotchy.getMode();
         this.gotchyHobby = gotchy.getGotchyHobby();
         this.gotchyDate = gotchy.getGotchyDate();
+        this.gotchyTime = gotchy.getGotchyTime();
         this.location = gotchy.getLocation();
         this.headcount = gotchy.getHeadcount();
     }
